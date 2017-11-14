@@ -79,5 +79,49 @@ namespace Algorithms
 			}
 		}
 
+		public void QuickSort(int left, int right)
+		{
+			int index = QuickSort_Partition(left, right);
+
+			if (left < index - 1)
+			{
+				QuickSort(left, index - 1);
+			}
+			if (index < right)
+			{
+				QuickSort(index, right);
+			}
+		}
+
+		private int QuickSort_Partition(int left, int right)
+		{
+			//Assign the left as pivot
+			int pivot = left;
+
+			while (left <= right)
+			{
+				while (array[left] < array[pivot])
+				{
+					left++;
+				}
+
+				while (array[right] > array[pivot])
+				{
+					right--;
+				}
+
+				if (left <= right)
+				{
+					int temp = array[left];
+					array[left] = array[right];
+					array[right] = temp;
+
+					left++;
+					right--;
+				}
+			}
+
+			return left;
+		}
 	}
 }
